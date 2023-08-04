@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel ="stylesheet" href="countdown_style.css">
+</head>
+<body>
+    <div class="main">
+        <p class="message">NEW YEAR COUNTDOWN</p>
+        <div class="display_time">
+            <p class="time" id="days"></p>
+            <p class="time" id="hours"></p>
+            <p class="time" id="mins"></p>
+            <p class="time" id="sec"></p>
+        </div>
+    </div>
+    <script>
+        const nextYear = new Date().getFullYear() + 1;
+        const newYearTime = new Date(`January 1 ${nextYear} 00:00:00`);
+        function countdown(){
+            const currTime = new Date();
+            const diff = newYearTime - currTime;
+
+            var currDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var currHours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var currMin = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var currSec = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = `<span>${currDays}</span> days`;
+            document.getElementById('hours').innerHTML = `<span>${currHours}</span> hours`;
+            document.getElementById('mins').innerHTML = `<span>${currMin}</span> minutes`;
+            document.getElementById('sec').innerHTML = `<span>${currSec}</span> seconds`;
+        }
+        setInterval(countdown, 1000);
+    </script>
+    
+</body>
+</html>
